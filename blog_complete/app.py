@@ -61,8 +61,10 @@ def registration():
         # If account exists show error and validation checks
         if account:
             msg = 'Account already exists!'
-        elif not re.match(r'[A-Za-z0-9]+', username):
-            msg = 'Username must contain only characters and numbers!'
+        elif not re.search(r'[A-Z]+', username):
+            msg = 'Username must contain at least 1 uppercase character!'
+        elif len(password) < 5:
+            msg = 'Password must be at least 5 characters'
         elif not username or not password or not name:
             msg = 'Please fill out the form!'
         else:
@@ -73,6 +75,12 @@ def registration():
             cur.execute(sql)
             conn.commit()
             return redirect(url_for('index'))
+
+    elif request.method == 'POST':
+        # Form is empty... (no POST data)
+        msg = 'Please fill out the form!'
+    # Show registration form with message (if any)
+    return render_template('registration.html', msg=msg)
 
     elif request.method == 'POST':
         # Form is empty... (no POST data)
