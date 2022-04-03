@@ -62,7 +62,8 @@ def registration():
             msg = 'Account already exists!'
         elif not re.search(r'[A-Z]+', username):
             msg = 'Username must contain at least 1 uppercase character!'
-        elif not re.search(r'[A-Z]+', password) or len(password) < 4:
+        elif not re.search(r'[A-Z]+', password) or len(password) <= 4:
+        # Yes, we cool 8D
             msg = 'Password must be at least 5 characters and 1 uppercase character'
         elif not username or not password or not name:
             msg = 'Please fill out the form!'
