@@ -6,8 +6,8 @@ def db_connection():
     conn = psycopg2.connect(
         host='localhost',
         port=5432,
-        database='db_assignment2',
+        database='Default',
         user='postgres',
-        password='G550'
+        password='Default'
     )
     return conn
