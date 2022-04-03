@@ -2,12 +2,10 @@ from flask import (
     Flask, request, render_template, session, flash, redirect, url_for, jsonify
 )
 import re
-
 from db import db_connection
 
-
 app = Flask(__name__)
-app.secret_key = 'THISISMYSECRETKEY'  # create the unique one for yourself
+app.secret_key = 'KIKOENAKTAUU'  # create the unique one for yourself
 app.permanent_session_lifetime = 3600 #in seconds
 
 
@@ -40,7 +38,8 @@ def login():
         flash(error)
         cur.close()
         conn.close()
-
+    # data = request.form
+    # print(data)
     return render_template('login.html')
 
 @app.route('/registration', methods=['GET', 'POST'])
@@ -75,12 +74,6 @@ def registration():
             cur.execute(sql)
             conn.commit()
             return redirect(url_for('index'))
-
-    elif request.method == 'POST':
-        # Form is empty... (no POST data)
-        msg = 'Please fill out the form!'
-    # Show registration form with message (if any)
-    return render_template('registration.html', msg=msg)
 
     elif request.method == 'POST':
         # Form is empty... (no POST data)
