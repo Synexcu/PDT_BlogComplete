@@ -94,8 +94,9 @@ def index():
     conn = db_connection()
     cur = conn.cursor()
     sql = """
-        SELECT art.id, art.title, art.body
+        SELECT art.id, art.title, art.body, usr.username
         FROM articles art
+        JOIN users usr ON usr.id = art.user_id
         ORDER BY art.title
     """
     cur.execute(sql)
